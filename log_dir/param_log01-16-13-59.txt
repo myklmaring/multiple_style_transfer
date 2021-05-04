@@ -1,7 +1,0 @@
-Epochs: 1
-Batch Size: 4
-Dataset: /home/michael/Documents/datasets/COCO/
-Style Image: images/style-images/mosaic.jpg
-Content Weight: 100000.0
-Style Weight: 10000000000.0
-Learning Rate: 0.001
