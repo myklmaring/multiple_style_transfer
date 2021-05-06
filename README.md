@@ -1,6 +1,9 @@
 # multiple_style_transfer
 
-This is an original python implementation of real-time style transfer [[1]](#1).  This implementation allows for the combination of two or more styles during the style transfer.  The first method I used to accomplish this was summing the losses from each style image during training.  The alternative method I used to accomplish multiple style transfer was using distillation [[2]](#2) with pretrained single-style style transfer transformers.
+This is an original python implementation of real-time style transfer [[1]](#1).  Style transfer is rendering one image (content image) with the style of another image (style image). 
+
+
+This implementation allows for the combination of two or more styles during the style transfer.  The first method I used to accomplish this was summing the losses from each style image during training.  The alternative method I used to accomplish multiple style transfer was using distillation [[2]](#2) with pretrained single-style style transfer transformers.
 
 ## References
 <a id="1">[1]</a> 
