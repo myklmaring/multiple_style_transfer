@@ -3,7 +3,7 @@ from torch.nn import functional
 
 
 class Transformer(nn.Module):
-    def __init__(self, norm='instance', padding='reflect'):
+    def __init__(self, padding='reflect'):
         super(Transformer, self).__init__()
 
         # Relu layer after all normalization, no ReLU after Residual Layers
@@ -11,11 +11,11 @@ class Transformer(nn.Module):
 
         # Encoder
         self.conv1 = ConvLayer(3, 32, kernel_size=9, stride=1, padding=padding)
-        self.norm1 = norm_fn(32, norm)
+        self.norm1 = nn.InstanceNorm2d(32, affine=True)
         self.conv2 = ConvLayer(32, 64, kernel_size=3, stride=2, padding=padding)
-        self.norm2 = norm_fn(64, norm)
+        self.norm2 = nn.InstanceNorm2d(64, affine=True)
         self.conv3 = ConvLayer(64, 128, kernel_size=3, stride=2, padding=padding)
-        self.norm3 = norm_fn(128, norm)
+        self.norm3 = nn.InstanceNorm2d(128, affine=True)
 
         self.encoder = nn.Sequential(
             self.conv1,
@@ -46,9 +46,9 @@ class Transformer(nn.Module):
 
         # Decoder
         self.up1 = Upsample(128, 64, kernel_size=3, stride=1, factor=2, padding=padding)
-        self.norm4 = norm_fn(64, norm)
+        self.norm4 = nn.InstanceNorm2d(64, affine=True)
         self.up2 = Upsample(64, 32, kernel_size=3, stride=1, factor=2, padding=padding)
-        self.norm5 = norm_fn(32, norm)
+        self.norm5 = nn.InstanceNorm2d(32, affine=True)
         self.conv4 = ConvLayer(32, 3, kernel_size=9, stride=1, padding=padding)
 
         self.decoder = nn.Sequential(
@@ -103,13 +103,13 @@ class Upsample(nn.Module):
 
 
 class ResidualLayer(nn.Module):
-    def __init__(self, dim, padding='reflect', norm='instance'):
+    def __init__(self, dim, padding='reflect'):
         super(ResidualLayer, self).__init__()
 
         self.ConvLayer1 = ConvLayer(dim, dim, kernel_size=3, stride=1, padding=padding)
-        self.norm1 = norm_fn(dim, norm)
+        self.norm1 = nn.InstanceNorm2d(dim, affine=True)
         self.ConvLayer2 = ConvLayer(dim, dim, kernel_size=3, stride=1, padding=padding)
-        self.norm2 = norm_fn(dim, norm)
+        self.norm2 = nn.InstanceNorm2d(dim, affine=True)
         self.relu = nn.ReLU(inplace=True)
 
     def forward(self, x):
@@ -133,14 +133,6 @@ class Interpolate(nn.Module):
     def forward(self, x):
         output = self.interp(x, scale_factor=self.factor, mode=self.mode)
         return output
-
-
-def norm_fn(channels, norm):
-    if norm == 'instance':
-        return nn.InstanceNorm2d(channels, affine=True)
-    elif norm == 'batch':
-        return nn.BatchNorm2d(channels, affine=True)
-
 
 def Padding(pad, padding):
     if padding == 'reflect':
