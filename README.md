@@ -1,16 +1,41 @@
-# multiple_style_transfer
+# Multiple Style Transfer
 
-This is an original python implementation of real-time style transfer [[1]](#1).  Style transfer is rendering one image (content image) with the style of another image (style image). 
+This is an original python implementation of real-time style transfer [[1]](#1).  Style transfer is rendering one image (content image) with the style of another image (style image).  Style transfer was originally achieved iteratively, and therefore substantial rendering time, to "optimize" the output images [[2]](#2) 
+
+![style transfer](readme_figures/style_transfer.png)
+
+The real-time style transfer from [[1]](#1) trains a feed-forward neural network to perform the style transfer in one forward pass.  My implementation of this framework was additionally designed to allow for the combination of two or more styles during training [(Project Paper)](https://arxiv.org/abs/1911.06464).  I was able to achieve this using two methods; one where I combine the style losses of each style image using the original framework from [[1]](#1), and another using knowledge distillation from pretrained style feed-forward neural networks [[3]](#3).  
+
+![multiple_style_transfer](readme_figures/monasso.png)
 
 
-This implementation allows for the combination of two or more styles during the style transfer.  The first method I used to accomplish this was summing the losses from each style image during training.  The alternative method I used to accomplish multiple style transfer was using distillation [[2]](#2) with pretrained single-style style transfer transformers.
+The first method also allowed for interpolation between the contribution of each style image in the final result.
+
+![Interpolation](readme_figures/styleInterp.png)
+
+If you are interested in learning about more current advances in style transfer check out these following papers (not my work):
+
+One drawback of the feed-forward network in this framework is that it is tied specifically to the style image it is trained on.  For each new style image, an entirely new network must be trained.  These two papers aim to tailor the feed-forward network so that it can be trained to perform on any arbitrary style image without being retrained.
+
+
+Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization
+https://arxiv.org/pdf/1703.06868.pdf
+
+Exploring the structure of a real-time, arbitrary neural
+artistic stylization network
+https://arxiv.org/pdf/1705.06830.pdf
 
 ## References
+
 <a id="1">[1]</a> 
 Justin Johnson, Alexandre Alahi, and Li Fei-Fei (2016). 
 Perceptual Losses for Real-Time Style Transfer
 and Super-Resolution
 
 <a id="2">[2]</a> 
+Leon A. Gatys, Alexander S. Ecker, Matthias Bethge (2015)
+A Neural Algorithm of Artistic Style
+
+<a id="3">[3]</a> 
 Geoffrey Hinton and Oriol Vinyals and Jeff Dean (2015)
 Distilling the Knowledge in a Neural Network
