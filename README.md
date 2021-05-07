@@ -14,6 +14,16 @@ The first method also allowed for interpolation between the contribution of each
 
 ![Interpolation](readme_figures/styleInterp.png)
 
+
+# Running Code:
+
+Conda Environment: environment.yml
+* python 3.9.4
+* pytorch 1.8.1
+* opencv 4.5.1
+
+# Interested and want to learn more
+
 If you are interested in learning about more current advances in style transfer check out these following papers (not my work):
 
 One drawback of the feed-forward network in this framework is that it is tied specifically to the style image it is trained on.  For each new style image, an entirely new network must be trained.  These two papers aim to tailor the feed-forward network so that it can be trained to perform on any arbitrary style image without being retrained.
