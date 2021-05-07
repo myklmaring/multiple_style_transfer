@@ -22,6 +22,18 @@ Conda Environment: environment.yml
 * pytorch 1.8.1
 * opencv 4.5.1
 
+Training:
+* train.py for loss method
+* distillation.py for distillation method
+
+Both have example commands for calling these scripts in the bash file, run_training.sh
+
+Rendering:
+* render_image.py for images
+* render_video.py for videos
+
+Both have example commands for calling their respective scripts (render_image.sh, render_video.sh)
+
 # Interested and want to learn more
 
 If you are interested in learning about more current advances in style transfer check out these following papers (not my work):
