@@ -26,7 +26,7 @@ Training:
 * train.py for loss method
 * distillation.py for distillation method
 
-Both have example commands for calling these scripts in the bash file, run_training.sh
+Both have example commands for calling these scripts in the bash file, run_training.sh. The dataset that I used for training was the 2017 common objects in context (COCO) data set. It can be found at [COCO] (https://cocodataset.org/#download).  The datapath input to train.py and distillation.py should point to the parent COCO folder on your machine where the training, val, and test image set folders are located.  Using this dataset took me about 3:00 - 3:30 hrs to train using a gtx 1080.
 
 Rendering:
 * render_image.py for images
