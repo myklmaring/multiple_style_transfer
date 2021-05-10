@@ -9,10 +9,11 @@ This is an original python implementation of real-time style transfer [[1]](#1).
 <img src="readme_figures/style_transfer.png" />
 </p>
 
-Style transfer was originally achieved iteratively, and therefore substantial rendering time, to "optimize" the output images [[2]](#2).  This allows for videos to be rendered within a reasonable timeframe.
+Style transfer was originally achieved iteratively, and therefore substantial rendering time, to "optimize" the output images [[2]](#2).  This allows for videos to be rendered within a reasonable timeframe. (Left: Original, Right: Rendered with candy.model)
 
 <p align="center">
 <img src="readme_figures/champagne_resized.gif" width="270" height="512" />
+
 <img src="readme_figures/champagne_candy.gif" width="270" height="512" />
 </p>
 
