@@ -1,18 +1,32 @@
 
+
+
 # Multiple Style Transfer
 
-This is an original python implementation of real-time style transfer [[1]](#1).  Style transfer is rendering one image (content image) with the style of another image (style image).  Style transfer was originally achieved iteratively, and therefore substantial rendering time, to "optimize" the output images [[2]](#2) 
+This is an original python implementation of real-time style transfer [[1]](#1).  Style transfer is rendering one image (content image) with the style of another image (style image).
 
-![style transfer](readme_figures/style_transfer.png)
+<p align="center">
+<img src="readme_figures/style_transfer.png" />
+</p>
+
+Style transfer was originally achieved iteratively, and therefore substantial rendering time, to "optimize" the output images [[2]](#2).  This allows for videos to be rendered within a reasonable timeframe.
+
+<p align="center">
+<img src="readme_figures/champagne_resized.gif" width="270" height="512" />
+<img src="readme_figures/champagne_candy.gif" width="270" height="512" />
+</p>
 
 The real-time style transfer from [[1]](#1) trains a feed-forward neural network to perform the style transfer in one forward pass.  My implementation of this framework was additionally designed to allow for the combination of two or more styles during training [(Project Paper)](https://arxiv.org/abs/1911.06464).  I was able to achieve this using two methods; one where I combine the style losses of each style image using the original framework from [[1]](#1), and another using knowledge distillation from pretrained style feed-forward neural networks [[3]](#3).  
 
-![multiple_style_transfer](readme_figures/monasso.png)
-
+<p align="center">
+<img src="readme_figures/monasso.png" />
+</p>
 
 The first method also allowed for interpolation between the contribution of each style image in the final result.
 
-![Interpolation](readme_figures/styleInterp.png)
+<p align="center">
+<img src="readme_figures/styleInterp.png" />
+</p>
 
 
 # Running Code:
